@@ -102,7 +102,7 @@ public class DirectionResolver {
             // side are treated equally and for both cases we use the only possible edge ids.
             return DirectionResolverResult.restricted(inEdges.get(0).edgeId, outEdges.get(0).edgeId, inEdges.get(0).edgeId, outEdges.get(0).edgeId);
         } else if (adjacentEdges.nextPoints.size() == 2) {
-            Iterator<Point> iter = adjacentEdges.nextPoints.iterator();
+            Iterator<Point> iter = adjacentEdges.nextPoints.stream().sorted(Comparator.comparing(Point::toString)).iterator();
             Point p1 = iter.next();
             Point p2 = iter.next();
             List<Edge> in1 = adjacentEdges.getInEdges(p1);
